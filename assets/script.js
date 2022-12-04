@@ -9,7 +9,7 @@ var optionsEl = document.querySelector('#options');
 var currentQuestionIndex = 0;
 
 
-// ___________________________________________________________
+// ______working_____________________________________________________
 // Setting the timer.
 function setTime() {
   // Sets interval in variable
@@ -30,7 +30,7 @@ function setTime() {
 
 
 
-// ___________________________________________________________
+// ________working (1st question only, needs to set the right answers____________
 function askQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
 
@@ -48,7 +48,7 @@ function askQuestion() {
     optionsEl.appendChild(optionsBtn)
   }
 }
-// ___________________________________________________________
+// __not working, issue with the "element.matches"____________________
 
 function clickOptions () {
   var options = document.querySelector("#options");
@@ -78,7 +78,7 @@ options.addEventListener("click", function(event) {
 
 
 
-// ___________________________________________________________
+// ___working___________________________________________________
 function startGame() {
   var startGameScreen = document.querySelector('#page1');
   startGameScreen.setAttribute('class', 'hide');
