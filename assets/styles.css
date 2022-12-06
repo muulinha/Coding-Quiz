@@ -107,3 +107,33 @@ h2 {
     margin: 0 auto;
     list-style: none;
 } */
+
+#initials-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px
+}
+
+#submit {
+    margin-left: 10px;
+    padding: 5px 10px;    
+    background-color: blueviolet;
+    color: white;
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+#initials {
+    height: 25px;
+    margin: auto 10px auto 10px;
+}
+
+#score {
+    text-align: center;
+    font-size: 30px;
+}
+
+#initials-text {
+    font-size: 20px;
+    margin: auto 10px auto 10px;
+}

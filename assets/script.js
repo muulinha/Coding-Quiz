@@ -111,7 +111,7 @@ function checkAnswer(event) {
 //when game is over, save initials and score, score = time left
 function winGame() {
   var scoreEl = document.getElementById("score");
-  scoreEl.textContent = timerCount;
+  scoreEl.textContent = "Your final score is " + timerCount;
   quizzEl.classList.add("hide");
   endEl.classList.remove("hide");
   timerEl.classList.add("hide");
