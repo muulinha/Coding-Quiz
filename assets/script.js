@@ -1,114 +1,148 @@
-// Setting the timer.
-var timerEl = document.getElementById("timer");
-var secondsLeft = 60;
-// adding function to "start quiz button"
-var startButton = document.getElementById("startQuiz");
-// Setting the Quiz Page (questions and Options)
-var questionsEl = document.querySelector('#quiz-page');
-var optionsEl = document.querySelector('#options');
-var currentQuestionIndex = 0;
+//startButton QuerySelector
 
+var startButton = document.querySelector(".startButton");
+var timerEl = document.querySelector(".timerCount");
+var generateQuestion = document.querySelector(".generateQuestion");
+var choicesEl = document.querySelector("#choices");
+var questionIndex = 0;
+var startEl = document.querySelector("#start");
+var quizzEl = document.querySelector("#quizz");
+var endEl = document.querySelector("#end");
+var submitEl = document.querySelector("#submit");
 
-// ______working_____________________________________________________
-// Setting the timer.
-function setTime() {
-  // Sets interval in variable
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timerEl.textContent = "Time: " + secondsLeft + " s";
+var isWin = false;
+var timer;
+var timerCount;
 
-    if(secondsLeft === 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      timerEl.textContent = "Time Over!";
-      // Calls function to create and append image
-      sendMessage();
+//Question Arrays
+
+var questions = [
+  {
+    title: "Commonly used data types DO NOT include:",
+    choices: ["strings", "booleons", "alerts", "numbers"],
+    answer: "alerts",
+  },
+  {
+    title: "The condition in an if/else statement is enclosed within ____ .",
+    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    answer: "curly brackets",
+  },
+  {
+    title: "Arrays in JavaScript can be used to store ____. ",
+    choices: ["numbers and strings","other arrays","booleons","all of the above"],
+    answer: "all of the above",
+  },
+  {
+    title:"String values must be enclosed within ____ when being assigned to variables.",
+    choices: ["commas", "curly brackets", "quotes", "parentheses"],
+    answer: "curly brackets",
+  },
+  {
+    title:"A very useful tool used during development and debugging for priinting content to the defugger is:",
+    choices: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+    answer: "console.log",
+  }];
+
+function startQuizz() {
+  isWin = false;
+  startEl.classList.add("hide");
+  quizzEl.classList.remove("hide");
+  timerCount = 100;
+  startTimer();
+  renderQuestions();
+}
+
+//timer
+
+function startTimer() {
+  timer = setInterval(function () {
+    timerCount--;
+    timerEl.textContent = timerCount;
+
+    if (timerCount === 0) {
+      clearInterval(timer);
+      winGame();
     }
   }, 1000);
 }
-// ___________________________________________________________
 
+// render questions, get element by ID,
 
+function renderQuestions() {
+  var questionsTitle = questions[questionIndex].title;
 
-// ________working (1st question only, needs to set the right answers____________
-function askQuestion() {
-  var currentQuestion = questions[currentQuestionIndex];
+  var titleEl = document.getElementById("questions");
+  titleEl.textContent = questionsTitle;
 
-  var questionTitle = document.querySelector('#question-title');
-  questionTitle.textContent = currentQuestion.title;
-
-  for (i = 0; i < currentQuestion.options.length; i++) {
-    var option = currentQuestion.options[i];
-    
-    var optionsBtn = document.createElement('button');
-    optionsBtn.setAttribute('value', option)
-
-    optionsBtn.textContent = i + 1 + option;
-
-    optionsEl.appendChild(optionsBtn)
+  //render question choicees
+  for (i = 0; i < questions[questionIndex].choices.length; i++) {
+    var buttonEl = document.getElementById("button" + (i + 1));
+    buttonEl.textContent = questions[questionIndex].choices[i];
+    // if clicked , next question text plus choices appears
+    buttonEl.addEventListener("click", checkAnswer);
   }
 }
-// __not working, issue with the "element.matches"____________________
-
-function clickOptions () {
-  var options = document.querySelector("#options");
-  
-// Listen for any clicks within the options id
-options.addEventListener("click", function(event) {
-  var element = event.target;
-  
-  if (element.matches("options")) {
+function checkAnswer(event) {
+  var userChoice = event.target.textContent;
+  if (userChoice === questions[questionIndex].answer) {
     
-    startGame();
-    if (correctAnswer === questions.answer) {
-      // Change the data-state attribute's value
-      // There are two different ways this attribute can be set
-      
+    var correctMessage = document.createElement(correctMessage);
+    correctMessage.textContent = "Correct answer!";
+    document.getElementById("choices").appendChild(correctMessage);
+    correctMessage.setAttribute("id", "correctMessage");
 
-    } else {
-      secondsLeft = secondsLeft - 10;
-      askQuestion();
-    }
+  } else {
+    var wrongMessage = document.createElement(wrongMessage);
+    wrongMessage.textContent = "Wrong answer!";
+    document.getElementById("choices").appendChild(wrongMessage);
+    wrongMessage.setAttribute("id", "wrongMessage");
+    // , when answered incorrectly, time is subtracted 10sec
+    timerCount -= 10;
   }
+  questionIndex = questionIndex + 1;
+  if (questions.length > questionIndex) {
+    renderQuestions();
+  } else {
+    clearInterval(timer);
+    winGame();
+  }
+}
+
+//when game is over, save initials and score, score = time left
+function winGame() {
+  var scoreEl = document.getElementById("score");
+  scoreEl.textContent = timerCount;
+  quizzEl.classList.add("hide");
+  endEl.classList.remove("hide");
+  timerEl.classList.add("hide");
+}
+
+
+startButton.addEventListener("click", startQuizz);
+// create form
+
+//submit button and highscore link both go to same
+function openPage() {
+  window.open("./index2.html");
+}
+
+submitEl.addEventListener("click", function () {
+  var initalsInput = document.querySelector("#initials");
+
+  var user = {
+    initals: initalsInput.value,
+    score: timerCount,
+  };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  
 });
 
-}
-// ____________________________________________________________
+//display local storage JSOn
 
 
 
-
-// ___working___________________________________________________
-function startGame() {
-  var startGameScreen = document.querySelector('#page1');
-  startGameScreen.setAttribute('class', 'hide');
-
-  questionsEl.removeAttribute('class', "hide");
-
-  setTime();
-
-  askQuestion();
-  clickOptions();
-}
-// ____________________________________________________________
-
-startButton.onclick = startGame;
-
-// ____________________________________________________________
-
-
-
-// function for when a user clicks on a option
-// hint: look for a func example that takes a user click event 
-// this func will add and subtract time and display righ t or wrong feedback 
-// it will increment question index
-// if there are no more questions, run endGame, else rerun askQuestion
-
-// console.log(questionsAnswers[1]);
-
-//funct to end game 
-
-// func to save high score 
 
 
 

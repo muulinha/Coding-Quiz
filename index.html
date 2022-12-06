@@ -1,49 +1,58 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
   <head>
-    <meta charset="UTF=8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./assets/styles.css">
-    <title>Coding Quiz Challenge</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles.css" />
+
+    <title>Document</title>
   </head>
 
-<body>
+  <body>
     <header>
-        <button id="viewHighscores">View HighScores</button>
-        <p id="timer">Time</p>
+      <ul class="header">
+        <li class="header-topic"><a href="./index2.html">Highscores</a></li>
+        <li class="header-topic">Timer: <a class="timerCount"></a></li>
+      </ul>
     </header>
 
-    <main>
-        
-        
-        <section id="page1">
-            <h1 id="introTitle">Coding Quiz Challenge</h1>
-            <h2 id="introText"> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</h2>
-            <button id="startQuiz">Start Quiz</button>
-        </section>  
+    <section id="start">
+        <h1>Coding Quiz Challenge</h1>
+        <h2> Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</h2>
+        <div>
+          <button class="startButton">Start</button>
+        </div>
+    </section>
 
-        <section id="quiz-page" class="hide">
-          <h3 id="question-title"></h3>
-          <div id="options" class="options"></div>
-        </section>
-
-
-        <!-- // add screen for end of game  -->
-
-
-
-    </main>
-
+    <section id="quizz" class="hide">
+      <h2 id="questions"> </h2>
+      <div id="choices">
+        <ul class="buttons">
+          <li><button id="button1" class="btn"></button></li>
+          <li><button id="button2" class="btn"></button></li>
+          <li><button id="button3" class="btn"></button></li>
+          <li><button id="button4" class="btn"></button></li>
+        </ul>
+      </div>
+    </section>
 
 
+    <Section id="end" class="hide">
+      <form>
+        <div>
+          <h1>All done!</h1>
+        </div>
+        <p id="score"></p> 
+        <input type="text" id="initials"> <button id="submit" onclick="openPage()"> submit</button>
+     </form>
 
 
 
 
 
-    <script src="./assets/questions.js"></script>
+    </Section>
+    <script src="./assets/script2.js"></script>
     <script src="./assets/script.js"></script>
-
-</body>
-
+  </body>
 </html>
