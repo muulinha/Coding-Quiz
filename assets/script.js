@@ -244,4 +244,8 @@ goBackBtn.addEventListener("click", function (event) {
   endEl.classList.add("hide");
   timerEl.classList.add("hide");
   scoreCountEl.classList.add("hide");
+  timerCount = 100;
+  questionIndex = 0
+  startTimer();
+  renderQuestions();
 });
