@@ -47,6 +47,7 @@ h2 {
     border: 2px solid black;
     border-radius: 5px;
     font-size: 30px;
+    cursor: pointer;
 }
 
 .hide {
@@ -70,6 +71,7 @@ h2 {
     font-weight: bold;
     font-size: 20px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #score-count {
@@ -121,6 +123,7 @@ h2 {
     color: white;
     font-size: 15px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 #initials {
@@ -144,7 +147,7 @@ h2 {
     border-radius: 3px;
     list-style: none;
     padding: 20px;
-    
+    cursor: pointer;
     font-size: 20px;
     font-style: none;
 }
@@ -153,8 +156,10 @@ h2 {
     display: flex;
     justify-content: center;
     margin: 20px;  
+ 
 }
 
 #reset-btn, #goback-btn {
     margin: 0 20px
+    cursor: pointer;
 }
