@@ -9,6 +9,9 @@ var startEl = document.querySelector("#start");
 var quizzEl = document.querySelector("#quizz");
 var endEl = document.querySelector("#end");
 var submitEl = document.querySelector("#submit");
+var scoreCountEl = document.querySelector("#scoreCount");
+var highscoreBtn = document.querySelector("#highScores");
+var listEl = document.querySelector("#list");
 
 var isWin = false;
 var timer;
@@ -41,34 +44,57 @@ var questions = [
     title:"A very useful tool used during development and debugging for priinting content to the defugger is:",
     choices: ["JavaScript", "terminal/bash", "for loops", "console.log"],
     answer: "console.log",
-  }];
+  }
+];
 
+
+
+
+// Start button ________________________________________________________________
+startButton.addEventListener("click", startQuizz);
+// Start button ________________________________________________________________
+
+
+// Highscore button ____________________________________________________________
+highscoreBtn.addEventListener("click", function (event) {
+  event.preventDefault;
+  renderMessage();
+});
+// Highscore button ____________________________________________________________
+
+
+// Start Quiz Function__________Start Timer and RenderQuestions_________________
 function startQuizz() {
   isWin = false;
   startEl.classList.add("hide");
   quizzEl.classList.remove("hide");
+  scoreCountEl.classList.remove("hide");
   timerCount = 100;
   startTimer();
   renderQuestions();
-}
+};
+// Start Quiz Function__________Start Timer and RenderQuestions_________________
 
-//timer
 
+// Timer function_______________________________________________________________
 function startTimer() {
   timer = setInterval(function () {
     timerCount--;
-    timerEl.textContent = timerCount;
+    timerEl.textContent = timerCount + " s.";
 
     if (timerCount === 0) {
       clearInterval(timer);
       winGame();
     }
   }, 1000);
-}
+};
+// Timer function ends_______________________________________________________
 
-// render questions, get element by ID,
 
+// Ask Questions with the options function _______________________________
 function renderQuestions() {
+  scoreCountEl.classList.add("hide");
+
   var questionsTitle = questions[questionIndex].title;
 
   var titleEl = document.getElementById("questions");
@@ -81,22 +107,33 @@ function renderQuestions() {
     // if clicked , next question text plus choices appears
     buttonEl.addEventListener("click", checkAnswer);
   }
-}
+};
+// Ask Questions with the options function _______________________________
+
+// ____________________________________________________________
+
+
+// Checking correct Answers function __looping with the Ask Question Function___
 function checkAnswer(event) {
   var userChoice = event.target.textContent;
   if (userChoice === questions[questionIndex].answer) {
-    
-    var correctMessage = document.createElement(correctMessage);
+    var correctMessage = document.createElement("p");
     correctMessage.textContent = "Correct answer!";
     document.getElementById("choices").appendChild(correctMessage);
     correctMessage.setAttribute("id", "correctMessage");
-
-  } else {
-    var wrongMessage = document.createElement(wrongMessage);
+    // Message disapears __
+    setTimeout(() => {
+      document.getElementById("choices").removeChild(correctMessage);
+    }, 700);
+    } else {
+    var wrongMessage = document.createElement("p");
     wrongMessage.textContent = "Wrong answer!";
     document.getElementById("choices").appendChild(wrongMessage);
     wrongMessage.setAttribute("id", "wrongMessage");
-    // , when answered incorrectly, time is subtracted 10sec
+    // Message disapears __
+       setTimeout(() => {
+        document.getElementById("choices").removeChild(wrongMessage);
+      }, 700);
     timerCount -= 10;
   }
   questionIndex = questionIndex + 1;
@@ -106,44 +143,86 @@ function checkAnswer(event) {
     clearInterval(timer);
     winGame();
   }
-}
+};
+// Checking correct Answers function __looping with the Ask Question Function___
 
-//when game is over, save initials and score, score = time left
+
+// All done page function ______________________________________________________
 function winGame() {
   var scoreEl = document.getElementById("score");
-  scoreEl.textContent = "Your final score is " + timerCount;
+  scoreEl.textContent = "Your final score is " +timerCount + ".";
   quizzEl.classList.add("hide");
   endEl.classList.remove("hide");
   timerEl.classList.add("hide");
+  scoreCountEl.classList.add("hide");
 }
+// All done page function ______________________________________________________
 
 
-startButton.addEventListener("click", startQuizz);
-// create form
+// Submit button _______________________________________________________________
+submitEl.addEventListener("click", function (event) {
+  quizzEl.classList.add("hide");
+  endEl.classList.add("hide");
+  timerEl.classList.add("hide");
+  scoreCountEl.classList.remove("hide");
+  event.preventDefault();
+  saveLastScore();
+  renderMessage();
+});
+// Submit button _______________________________________________________________
 
-//submit button and highscore link both go to same
-function openPage() {
-  window.open("./index2.html");
-}
 
-submitEl.addEventListener("click", function () {
+// Storing initials and score __________________________________________________
+function saveLastScore() {
+
   var initalsInput = document.querySelector("#initials");
-
+  if (initalsInput == "") {
+    alert("Initials must be filled out.");
+    return false;
+  }
+  initalsInput
   var user = {
     initals: initalsInput.value,
     score: timerCount,
-  };
-
+    };
   localStorage.setItem("user", JSON.stringify(user));
-
-  
-});
-
-//display local storage JSOn
+};
+// Storing initials and score __________________________________________________
 
 
+// Decripting initials and score and printing __________________________________
+function renderMessage() {
+  var lastGrade = JSON.parse(localStorage.getItem("user"));
+    
+  if (lastGrade !== null) {
+      document.getElementById("savedInitials").innerHTML = lastGrade.initals;
+      document.getElementById("savedScores").innerHTML = lastGrade.score + " points";
+      lists = lastGrade;
+  } else {
+    return;
+  };
+  renderLists();
+};
+// Decripting initials and score and printing __________________________________
 
 
+// Creating list of highscores (dont think it's working) _______________________
+function renderLists() {
+  listEl.innerHTML = "";
+
+  var p = document.createElement("p");
+  p.setAttribute("data-index, i");
+
+  var button = document.createElement("button");
+  button.textContent = "remove";
+
+  p.appendChild(button);
+  todoList.appendChild(p);
+};
+// Creating list of highscores (dont think it's working) _______________________
 
 
-
+function init() {
+  saveLastScore();
+}
+init();

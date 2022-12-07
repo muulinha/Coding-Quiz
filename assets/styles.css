@@ -79,6 +79,7 @@ h2 {
 
 .user-scores {
     display: flex;
+    justify-content: space-between;
     padding: 20px;
     list-style: none;
     width: 20%;
@@ -114,7 +115,7 @@ h2 {
     margin: 20px
 }
 
-#submit {
+#submit, .standard-button {
     margin-left: 10px;
     padding: 5px 10px;    
     background-color: blueviolet;

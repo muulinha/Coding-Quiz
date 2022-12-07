@@ -12,50 +12,65 @@
   <body>
     <header>
       <ul class="header">
-        <li class="header-topic"><a href="./index2.html">Highscores</a></li>
-        <li class="header-topic">Timer: <a class="timerCount"></a></li>
+        <li class="header-topic"><button id="highScores">Highscores</button></li>
+        <li class="header-topic">Timer : <a class="timerCount">100 s</a></li>
       </ul>
     </header>
 
+    <!-- Start Page -->
     <section id="start">
-        <h1>Coding Quiz Challenge</h1>
-        <h2> Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</h2>
-        <div>
-          <button class="startButton">Start</button>
-        </div>
+      <h1>Coding Quiz Challenge</h1>
+      <h2>Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</h2>
+      <div>
+       <button class="startButton">Start</button>
+      </div>
     </section>
+    <!-- Start Page -->
 
+
+    <!-- Quiz Page -->
     <section id="quizz" class="hide">
-      <h2 id="questions"> </h2>
+      <h2 id="questions"></h2>
       <div id="choices">
         <ul class="buttons">
-          <li><button id="button1" class="btn"></button></li>
-          <li><button id="button2" class="btn"></button></li>
-          <li><button id="button3" class="btn"></button></li>
-          <li><button id="button4" class="btn"></button></li>
+          <li ><button id="button1" class="btn"></button></li>
+          <li ><button id="button2" class="btn"></button></li>
+          <li ><button id="button3" class="btn"></button></li>
+          <li ><button id="button4" class="btn"></button></li>
         </ul>
       </div>
     </section>
+    <!-- Quiz Page -->
 
 
-    <Section id="end" class="hide">
+<!-- ALL DONE PAGE -->
+    <section id="end" class="hide">
       <form>
         <div>
           <h1>All done!</h1>
         </div>
-        <p id="score"> </p> 
+        <p id="score"></p>
         <div id="initials-section">
           <p id="initials-text">Enter initials: </p>
-        <input type="text" id="initials"> <button id="submit" onclick="openPage()">Submit</button>
-      </div>
+        <input type="text" required id="initials" maxlength="10"/> <button id="submit">Submit</button>
+        </div>
       </form>
+    </section>
+<!-- ALL DONE PAGE -->
 
+<!-- Highscores List -->
+    <section id="scoreCount" class="hide">
+      <h2>Highscores</h2>
+      <p id="list"></p>
+      <ol class="user-scores">
+        <li id="savedInitials"></li>
+        <li id="savedScores"></li>
+      </ol>
+      
+    </section>
 
+<!-- Highscores List -->
 
-
-
-    </Section>
-    <script src="./assets/script2.js"></script>
     <script src="./assets/script.js"></script>
   </body>
 </html>
