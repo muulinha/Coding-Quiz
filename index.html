@@ -12,7 +12,7 @@
   <body>
     <header>
       <ul class="header">
-        <li class="header-topic"><button id="highScores">Highscores</button></li>
+        <li><button id="highScores">Highscores</button></li>
         <li class="header-topic">Timer : <a class="timerCount">100 s</a></li>
       </ul>
     </header>
@@ -62,10 +62,14 @@
     <section id="scoreCount" class="hide">
       <h2>Highscores</h2>
       <p id="list"></p>
-      <ol class="user-scores">
+      <ul class="user-scores">
         <li id="savedInitials"></li>
         <li id="savedScores"></li>
-      </ol>
+      </ul>
+      <div id="buttons">
+        <button class="standard-button" id="goback-btn">Go Back</button>
+        <button class="standard-button" id="reset-btn">Reset Scores</button>
+      </div>
       
     </section>
 

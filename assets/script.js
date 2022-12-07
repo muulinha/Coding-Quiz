@@ -12,6 +12,7 @@ var submitEl = document.querySelector("#submit");
 var scoreCountEl = document.querySelector("#scoreCount");
 var highscoreBtn = document.querySelector("#highScores");
 var listEl = document.querySelector("#list");
+var goBackBtn = document.querySelector("#goback-btn")
 
 var isWin = false;
 var timer;
@@ -57,7 +58,14 @@ startButton.addEventListener("click", startQuizz);
 
 // Highscore button ____________________________________________________________
 highscoreBtn.addEventListener("click", function (event) {
+  startEl.classList.add("hide");
   event.preventDefault;
+  quizzEl.classList.add("hide");
+  endEl.classList.add("hide");
+  timerEl.classList.add("hide");
+  scoreCountEl.classList.remove("hide");
+  event.preventDefault();
+  saveLastScore();
   renderMessage();
 });
 // Highscore button ____________________________________________________________
@@ -147,7 +155,7 @@ function checkAnswer(event) {
 // Checking correct Answers function __looping with the Ask Question Function___
 
 
-// All done page function ______________________________________________________
+// All DONE page function ______________________________________________________
 function winGame() {
   var scoreEl = document.getElementById("score");
   scoreEl.textContent = "Your final score is " +timerCount + ".";
@@ -156,7 +164,7 @@ function winGame() {
   timerEl.classList.add("hide");
   scoreCountEl.classList.add("hide");
 }
-// All done page function ______________________________________________________
+// All DONE page function ______________________________________________________
 
 
 // Submit button _______________________________________________________________
@@ -226,3 +234,14 @@ function init() {
   saveLastScore();
 }
 init();
+
+
+
+goBackBtn.addEventListener("click", function (event) {
+  event.preventDefault;
+  startEl.classList.remove("hide");
+  quizzEl.classList.add("hide");
+  endEl.classList.add("hide");
+  timerEl.classList.add("hide");
+  scoreCountEl.classList.add("hide");
+});
