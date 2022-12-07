@@ -89,7 +89,7 @@ function startTimer() {
   clearInterval(timer)
   timer = setInterval(function () {
     timerCount--;
-    timerEl.textContent = timerCount + " s.";
+    timerEl.textContent = ": " + timerCount + " s.";
 
     if (timerCount === 0) {
       clearInterval(timer);
