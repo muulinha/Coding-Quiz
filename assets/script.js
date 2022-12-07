@@ -23,7 +23,7 @@ var timerCount;
 var questions = [
   {
     title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleons", "alerts", "numbers"],
+    choices: ["strings", "booleans", "alerts", "numbers"],
     answer: "alerts",
   },
   {
@@ -33,7 +33,7 @@ var questions = [
   },
   {
     title: "Arrays in JavaScript can be used to store ____. ",
-    choices: ["numbers and strings","other arrays","booleons","all of the above"],
+    choices: ["numbers and strings","other arrays","booleans","all of the above"],
     answer: "all of the above",
   },
   {
@@ -42,7 +42,7 @@ var questions = [
     answer: "curly brackets",
   },
   {
-    title:"A very useful tool used during development and debugging for priinting content to the defugger is:",
+    title:"A very useful tool used during development and debugging for printing content to the debugger is:",
     choices: ["JavaScript", "terminal/bash", "for loops", "console.log"],
     answer: "console.log",
   }
@@ -86,6 +86,7 @@ function startQuizz() {
 
 // Timer function_______________________________________________________________
 function startTimer() {
+  clearInterval(timer)
   timer = setInterval(function () {
     timerCount--;
     timerEl.textContent = timerCount + " s.";
@@ -114,11 +115,8 @@ function renderQuestions() {
     buttonEl.textContent = questions[questionIndex].choices[i];
     // if clicked , next question text plus choices appears
     buttonEl.addEventListener("click", checkAnswer);
-  }
-};
+  }};
 // Ask Questions with the options function _______________________________
-
-// ____________________________________________________________
 
 
 // Checking correct Answers function __looping with the Ask Question Function___
@@ -229,14 +227,7 @@ function renderLists() {
 };
 // Creating list of highscores (dont think it's working) _______________________
 
-
-function init() {
-  saveLastScore();
-}
-init();
-
-
-
+// Go back buntton _____________________________________________________________
 goBackBtn.addEventListener("click", function (event) {
   event.preventDefault;
   startEl.classList.remove("hide");
@@ -249,3 +240,12 @@ goBackBtn.addEventListener("click", function (event) {
   startTimer();
   renderQuestions();
 });
+// Go back buntton _____________________________________________________________
+
+
+function init() {
+  saveLastScore();
+}
+init();
+
+
