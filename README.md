@@ -5,9 +5,9 @@ This web application can be accessed here -> https://muulinha.github.io/Coding-Q
 ## Description
 
 The Coding Quiz Challenge is a web application that test your knowledge in coding!
-It's divided in 5 questions.
-Try to answer the code-related questions with the time limit. 
-Keep in mind that incorrect answers will penalize your scoretime by ten seconds!
+* It's divided in 5 questions.
+* Try to answer the code-related questions with the time limit. 
+* Keep in mind that incorrect answers will penalize your scoretime by ten seconds!
 
 Try our and share with your friends to know who is the best!
 
