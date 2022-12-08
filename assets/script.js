@@ -1,5 +1,3 @@
-//startButton QuerySelector
-
 var startButton = document.querySelector(".startButton");
 var timerEl = document.querySelector(".timerCount");
 var generateQuestion = document.querySelector(".generateQuestion");
@@ -18,8 +16,7 @@ var isWin = false;
 var timer;
 var timerCount;
 
-//Question Arrays
-
+// Question Arrays ________________________________________________________________
 var questions = [
   {
     title: "Commonly used data types DO NOT include:",
@@ -47,13 +44,14 @@ var questions = [
     answer: "console.log",
   }
 ];
+// Question Arrays Ends________________________________________________________________
 
 
 
 
 // Start button ________________________________________________________________
 startButton.addEventListener("click", startQuizz);
-// Start button ________________________________________________________________
+// Start button Ends________________________________________________________________
 
 
 // Highscore button ____________________________________________________________
@@ -68,7 +66,7 @@ highscoreBtn.addEventListener("click", function (event) {
   saveLastScore();
   renderMessage();
 });
-// Highscore button ____________________________________________________________
+// Highscore button Ends____________________________________________________________
 
 
 // Start Quiz Function__________Start Timer and RenderQuestions_________________
@@ -81,7 +79,7 @@ function startQuizz() {
   startTimer();
   renderQuestions();
 };
-// Start Quiz Function__________Start Timer and RenderQuestions_________________
+// Start Quiz Function Ends__________Start Timer and RenderQuestions_________________
 
 
 // Timer function_______________________________________________________________
@@ -97,7 +95,7 @@ function startTimer() {
     }
   }, 1000);
 };
-// Timer function ends_______________________________________________________
+// Timer function Ends_______________________________________________________
 
 
 // Ask Questions with the options function _______________________________
@@ -109,11 +107,9 @@ function renderQuestions() {
   var titleEl = document.getElementById("questions");
   titleEl.textContent = questionsTitle;
 
-  //render question choicees
   for (i = 0; i < questions[questionIndex].choices.length; i++) {
     var buttonEl = document.getElementById("button" + (i + 1));
     buttonEl.textContent = questions[questionIndex].choices[i];
-    // if clicked , next question text plus choices appears
     buttonEl.addEventListener("click", checkAnswer);
   }};
 // Ask Questions with the options function _______________________________
@@ -127,7 +123,6 @@ function checkAnswer(event) {
     correctMessage.textContent = "Correct answer!";
     document.getElementById("choices").appendChild(correctMessage);
     correctMessage.setAttribute("id", "correctMessage");
-    // Message disapears __
     setTimeout(() => {
       document.getElementById("choices").removeChild(correctMessage);
     }, 700);
@@ -136,7 +131,6 @@ function checkAnswer(event) {
     wrongMessage.textContent = "Wrong answer!";
     document.getElementById("choices").appendChild(wrongMessage);
     wrongMessage.setAttribute("id", "wrongMessage");
-    // Message disapears __
        setTimeout(() => {
         document.getElementById("choices").removeChild(wrongMessage);
       }, 700);
@@ -162,7 +156,7 @@ function winGame() {
   timerEl.classList.add("hide");
   scoreCountEl.classList.add("hide");
 }
-// All DONE page function ______________________________________________________
+// All DONE page function Ends______________________________________________________
 
 
 // Submit button _______________________________________________________________
@@ -175,7 +169,7 @@ submitEl.addEventListener("click", function (event) {
   saveLastScore();
   renderMessage();
 });
-// Submit button _______________________________________________________________
+// Submit button Ends_______________________________________________________________
 
 
 // Storing initials and score __________________________________________________
@@ -193,7 +187,7 @@ function saveLastScore() {
     };
   localStorage.setItem("user", JSON.stringify(user));
 };
-// Storing initials and score __________________________________________________
+// Storing initials and score Ends__________________________________________________
 
 
 // Decripting initials and score and printing __________________________________
@@ -209,10 +203,10 @@ function renderMessage() {
   };
   renderLists();
 };
-// Decripting initials and score and printing __________________________________
+// Decripting initials and score and printing Ends__________________________________
 
 
-// Creating list of highscores (dont think it's working) _______________________
+// Creating list of highscores _____________________________________________________
 function renderLists() {
   listEl.innerHTML = "";
 
@@ -225,7 +219,7 @@ function renderLists() {
   p.appendChild(button);
   todoList.appendChild(p);
 };
-// Creating list of highscores (dont think it's working) _______________________
+// Creating list of highscores Ends_______________________________________________
 
 // Go back buntton _____________________________________________________________
 goBackBtn.addEventListener("click", function (event) {
@@ -240,7 +234,7 @@ goBackBtn.addEventListener("click", function (event) {
   startTimer();
   renderQuestions();
 });
-// Go back buntton _____________________________________________________________
+// Go back buntton Ends_____________________________________________________________
 
 
 function init() {

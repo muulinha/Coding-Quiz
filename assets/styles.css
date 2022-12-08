@@ -103,12 +103,6 @@ h2 {
 
     
 }
-/* 
-#choices {
-    width: 50%;
-    margin: 0 auto;
-    list-style: none;
-} */
 
 #initials-section {
     display: flex;
@@ -156,7 +150,6 @@ h2 {
     display: flex;
     justify-content: center;
     margin: 20px;  
- 
 }
 
 #reset-btn, #goback-btn {
